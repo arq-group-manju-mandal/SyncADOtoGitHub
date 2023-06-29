@@ -1,6 +1,6 @@
 param(
     [Parameter()]
-    [string]$GitHubDestinationPAT
+    [string]$GitHubDestinationPAT,
 
     [Parameter()]
     [string]$ADOSourcePAT
@@ -13,11 +13,11 @@ Write-Host '-------------------------------'
 $AzureRepoName = "test"
 $ADOCloneURL = "dev.azure.com/manjumandal/test/_git/test"
 $GitHubCloneURL = "github.com/arq-group-manju-mandal/test.git"
-$stageDir = pwd | Split-Path
+$stageDir = Get-Location | Split-Path
 Write-Host "Stage Dir is  : $stageDir"
-$githubDir = $stageDir + "\" + $stageDir
+$githubDir = $stageDir + "\" + "gitHub"
 Write-Host "github Dir : $githubDir"
-$destination = $githubDir + "\" + AzureRepoName + ".git"
+$destination = $githubDir + "\" + $AzureRepoName+ ".git"
 Write-Host "destination: $destination"
 $sourceURL = "https://$($ADOSourcePAT)"+"@"+"$($ADOCloneURL)"
 Write-Host "source URL : $sourceURL"
